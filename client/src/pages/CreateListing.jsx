@@ -28,7 +28,6 @@ const CreateListing = () => {
     parking: false,
     furnished: false,
   });
-  console.log(formData);
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState(false);
@@ -141,7 +140,6 @@ const CreateListing = () => {
         }),
       });
       const data = await res.json();
-      console.log(data);
       setLoadingSubmit(false);
 
       if (data.success === false) {
