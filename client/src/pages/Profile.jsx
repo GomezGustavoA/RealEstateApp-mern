@@ -316,9 +316,11 @@ const Profile = () => {
                 >
                   <FaTrash style={{ width: "12px", color: "white" }} />
                 </button>
-                <button className="right-2 top-2 w-7 aspect-square bg-green-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transition-transform duration-200 ease-in-out transform hover:scale-125">
-                  <FaEdit style={{ width: "12px", color: "white" }} />
-                </button>
+                <Link to={`/update-listing/${listing._id}`}>
+                  <button className="right-2 top-2 w-7 aspect-square bg-green-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transition-transform duration-200 ease-in-out transform hover:scale-125">
+                    <FaEdit style={{ width: "12px", color: "white" }} />
+                  </button>
+                </Link>
               </div>
             </div>
           ))
