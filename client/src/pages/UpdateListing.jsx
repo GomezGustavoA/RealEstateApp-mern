@@ -376,6 +376,7 @@ const UpdateListing = () => {
           <p className="text-red-700 text-sm">
             {imageUploadError && imageUploadError}
           </p>
+
           {formData.imageUrls.length > 0 && (
             <div className="flex flex-wrap gap-2 justify-center">
               {formData.imageUrls.map((imageUrl, index) => (
@@ -386,6 +387,7 @@ const UpdateListing = () => {
                     className="w-40 h-40 object-cover rounded-lg"
                   />
                   <button
+                    type="button"
                     onClick={() => handleRemoveImage(index)}
                     className="absolute right-2 top-2 w-6 aspect-square bg-red-700 rounded-full flex justify-center items-center border-2 border-white shadow-lg transition-transform duration-200 ease-in-out transform hover:scale-110"
                   >
