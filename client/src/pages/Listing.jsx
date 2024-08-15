@@ -51,7 +51,7 @@ const Listing = () => {
         </p>
       )}
       {listing && !loading && !errorGetListing && (
-        <div className="max-w-7xl mx-auto bg-white shadow-lg overflow-hidden rounded">
+        <div className="max-w-7xl mx-auto bg-white shadow-lg overflow-hidden rounded ">
           <div className="relative">
             <Swiper navigation>
               {listing.imageUrls.map((url, index) => (
