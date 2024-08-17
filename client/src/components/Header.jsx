@@ -25,7 +25,6 @@ const Header = () => {
   const onChange = (e) => {
     setSearchTerm(e.target.value);
   };
-  console.log(isDropdownOpen);
   const handleSubmit = (e) => {
     setIsDropdownOpen(false);
     e.preventDefault();
@@ -62,7 +61,7 @@ const Header = () => {
     }
   };
   return (
-    <header className="min-w-[350px] bg-slate-200 shadow-md">
+    <header className="min-w-[350px] bg-slate-200 shadow-md fixed top-0 left-0 w-full z-50">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-6">
         <Link to="/">
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">

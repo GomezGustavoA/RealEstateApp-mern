@@ -184,10 +184,10 @@ const Profile = () => {
     handleShowListings();
   }, []);
   return (
-    <div className="min-w-[350px] sm:p-3 max-w-6xl flex flex-col mx-auto gap-5 md:flex-row">
-      <div className=" p-3 mx-auto w-full md:w-1/2">
-        <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+    <div className="p-3 min-w-[350px] sm: max-w-6xl flex flex-col mx-auto gap-5 md:flex-row mt-[104px]">
+      <div className="p-4 mx-auto w-full md:w-1/2 bg-white rounded-lg shadow-lg max-h-[520px]">
+        <h1 className="text-3xl font-semibold text-center mb-6">Profile</h1>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="file"
             ref={fileRef}
@@ -195,34 +195,33 @@ const Profile = () => {
             hidden
             accept="image/*"
           />
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
             <img
               src={formData.avatar || currentUser.avatar}
               alt="profile"
               onClick={() => fileRef.current.click()}
-              className=" sm:rounded h-28 w-28 object-cover cursor-pointer self-center"
+              className="rounded-full h-28 w-28 object-cover cursor-pointer border-2 border-gray-300"
             />
-            <div className=" w-full flex flex-col gap-4">
+            <div className="w-full flex flex-col gap-4">
               <input
                 type="text"
-                placeholder="username"
+                placeholder="Username"
                 id="username"
-                className="border p-3 rounded-lg"
+                className="border border-gray-300 p-3 rounded-lg w-full"
                 defaultValue={currentUser.username}
                 onChange={handleChange}
               />
               <input
-                type="text"
-                placeholder="email"
+                type="email"
+                placeholder="Email"
                 id="email"
-                className="border p-3 rounded-lg"
+                className="border border-gray-300 p-3 rounded-lg w-full"
                 defaultValue={currentUser.email}
                 onChange={handleChange}
               />
             </div>
           </div>
-
-          <p className=" text-sm self-center">
+          <p className="text-center text-sm">
             {imageUploadError ? (
               <span className="text-red-700">Error image upload!</span>
             ) : imagePerc > 0 && imagePerc < 100 ? (
@@ -235,95 +234,94 @@ const Profile = () => {
           </p>
           <input
             type="password"
-            placeholder="password"
+            placeholder="Password"
             id="password"
-            className="border p-3 rounded-lg"
+            className="border border-gray-300 p-3 rounded-lg w-full"
             onChange={handleChange}
           />
           <button
             disabled={loading}
-            className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 mt-9"
+            className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:bg-slate-800 disabled:opacity-80 mt-6 transition"
           >
-            {loading ? "loading..." : "update"}
+            {loading ? "loading..." : "Update"}
           </button>
           <Link
             to={"/create-listing"}
-            className="bg-green-700 text-white text-center rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80"
+            className="bg-green-700 text-white text-center rounded-lg p-3 uppercase hover:bg-green-800 disabled:opacity-80 mt-4 transition"
           >
             Create Listing
           </Link>
         </form>
-        <div className="flex justify-between mt-5">
+        <div className="flex justify-between mt-6 text-red-700">
           <span
-            className="text-red-700 cursor-default"
+            className="cursor-pointer hover:underline"
             onClick={handleDeleteUser}
           >
             Delete Account
           </span>
           <span
-            className="text-red-700 cursor-default"
+            className="cursor-pointer hover:underline"
             onClick={handleSignOutUser}
           >
-            {" "}
             Sign out
           </span>
         </div>
-        <p className="text-red-700 mt-5">{error ? error : ""}</p>
+        <p className="text-red-700 mt-5">{error || ""}</p>
         <p className="text-green-700 mt-5">
           {updateSuccess ? "User is updated successfully" : ""}
         </p>
       </div>
 
-      <div className="min-w-[350px] p-3 mx-auto w-full md:w-1/2">
-        <div className="flex w-full justify-center gap-4">
-          <h2 className="text-slate-700 text-3xl font-semibold my-7">
-            Your Listings
-          </h2>
+      <div className="p-4 mx-auto w-full md:w-1/2 bg-white rounded-lg shadow-lg max-h-[520px]">
+        <div className="flex w-full justify-center gap-4 mb-4">
+          <h2 className="text-3xl font-semibold text-center">Your Listings</h2>
           <p className="text-red-700 mt-5 text-sm">
             {showListingsError ? "Error showling listings" : ""}
           </p>
         </div>
         {userListings && userListings.length > 0 ? (
-          userListings.map((listing) => (
-            <div
-              className="border p-1 flex flex-row gap-1 justify-between items-center bg-white rounded-lg mb-1"
-              key={listing._id}
-            >
-              <Link
-                to={`/listing/${listing._id}`}
-                className="h-24 w-15 overflow-hidden flex items-center justify-center rounded-sm"
+          <div className="overflow-hidden overflow-y-scroll h-[435px] ">
+            {userListings.map((listing) => (
+              <div
+                className="border p-1 flex flex-row gap-1 justify-between items-center bg-white rounded-lg mb-1"
+                key={listing._id}
               >
-                <img
-                  className="w-24 h-15 object-cover cursor-pointer self-center rounded-sm "
-                  src={listing.imageUrls[0]}
-                  alt="image of the publication"
-                />
-              </Link>
-
-              <Link to={`/listing/${listing._id}`} className="flex flex-row">
-                <p className="text-slate-700 font-semibold flex flex-wrap transition-transform duration-200 ease-in-out transform hover:scale-105 hover:underline mr-3 ml-3">
-                  {listing.name}
-                </p>
-              </Link>
-
-              <div className="flex flex-col gap-3">
-                <button
-                  onClick={async () => {
-                    await handleListingDelete(listing);
-                    // handleShowListings();
-                  }}
-                  className="right-2 top-2 w-7 aspect-square bg-red-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transition-transform duration-200 ease-in-out transform hover:scale-125"
+                <Link
+                  to={`/listing/${listing._id}`}
+                  className="h-28 w-1/3 flex-shrink-0 overflow-hidden rounded-md"
                 >
-                  <FaTrash style={{ width: "12px", color: "white" }} />
-                </button>
-                <Link to={`/update-listing/${listing._id}`}>
-                  <button className="right-2 top-2 w-7 aspect-square bg-green-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transition-transform duration-200 ease-in-out transform hover:scale-125">
-                    <FaEdit style={{ width: "12px", color: "white" }} />
-                  </button>
+                  <img
+                    className="w-full h-full object-cover cursor-pointer "
+                    src={listing.imageUrls[0]}
+                    alt="image of the publication"
+                  />
                 </Link>
+
+                <Link to={`/listing/${listing._id}`} className="flex flex-row">
+                  <p className="text-slate-700 font-semibold flex flex-wrap transition-transform duration-200 ease-in-out transform hover:scale-105 hover:underline mr-3 ml-3">
+                    {listing.name}
+                  </p>
+                </Link>
+
+                <div className="flex flex-col gap-3">
+                  <button
+                    onClick={async () => {
+                      await handleListingDelete(listing);
+                      // handleShowListings();
+                    }}
+                    className="right-2 top-2 w-7 aspect-square bg-red-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transition-transform duration-200 ease-in-out transform hover:scale-125"
+                  >
+                    <FaTrash style={{ width: "12px", color: "white" }} />
+                  </button>
+                  <Link to={`/update-listing/${listing._id}`}>
+                    <button className="right-2 top-2 w-7 aspect-square bg-green-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transition-transform duration-200 ease-in-out transform hover:scale-125">
+                      <FaEdit style={{ width: "12px", color: "white" }} />
+                    </button>
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))
+            ))}
+          </div>
         ) : (
           <div className="flex flex-col items-center bg-gray-100 border border-gray-300 p-8 rounded-lg shadow-md">
             <FaRegSadTear className="text-gray-400 text-6xl mb-4" />

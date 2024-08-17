@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ListingCard from "../components/ListingCard";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -15,8 +16,8 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [listing, setListing] = useState([]);
+  const [showMore, setShowMore] = useState(false);
   console.log(listing);
-
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get("searchTerm");
@@ -49,15 +50,21 @@ const Search = () => {
     const fecthListings = async () => {
       try {
         setLoading(true);
+        setShowMore(false);
         const searchQuery = urlParams.toString();
         const res = await fetch(`/api/listing/get?${searchQuery}`);
-        console.log(searchQuery);
         const data = await res.json();
         if (data.success === false) {
           setError(data.message);
           setLoading(false);
           return;
         }
+        if (data.length >= 8) {
+          setShowMore(true);
+        } else {
+          setShowMore(false);
+        }
+        setLoading(false);
         setListing(data);
         setError(false);
       } catch (error) {
@@ -116,8 +123,22 @@ const Search = () => {
     navigate(`/search?${searchQuery}`);
   };
 
+  const onShowMoreClick = async () => {
+    const numberOfListings = listing.length;
+    const startIndex = numberOfListings;
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set("startIndex", startIndex);
+    const searchQuery = urlParams.toString();
+    const res = await fetch(`/api/listing/get?${searchQuery}`);
+    const data = await res.json();
+    if (data.length < 9) {
+      setShowMore(false);
+    }
+    setListing([...listing, ...data]);
+  };
+
   return (
-    <div className="flex flex-col md:flex-row bg-gray-50">
+    <div className="flex flex-col md:flex-row bg-gray-50 pt-[104px]">
       <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen bg-white shadow-lg">
         <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-2">
@@ -237,6 +258,31 @@ const Search = () => {
         <h1 className="text-2xl font-bold text-gray-700 mb-6">
           Listing Results:
         </h1>
+        <div className="p-7 flex flex-wrap gap-4">
+          {!loading && listing.length === 0 && (
+            <p className="text-xl text-slate-700">No listing found!</p>
+          )}
+          {loading && (
+            <p className="text-xl text-slate-700 text-center w-full">
+              Loading...
+            </p>
+          )}
+
+          {!loading &&
+            listing &&
+            listing.map((listing) => (
+              <ListingCard key={listing._id} listing={listing} />
+            ))}
+
+          {showMore && (
+            <button
+              onClick={onShowMoreClick}
+              className="text-green-700 hover:underline p-7 text-center w-full"
+            >
+              Show more
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
