@@ -7,6 +7,7 @@ import "swiper/css/bundle";
 import ListingCard from "../components/ListingCard";
 import { LuMousePointerClick } from "react-icons/lu";
 import { GiModernCity } from "react-icons/gi";
+import PropertyValueSection from "../components/PropertyValueSection";
 
 export const Home = () => {
   const [offerListings, setOfferListings] = useState([]);
@@ -49,7 +50,7 @@ export const Home = () => {
   return (
     <div>
       {/* top */}
-      <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto mt-[90px]">
+      <div className=" min-w-[350px] flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto mt-[90px]">
         <div className="flex flex-col gap-6 max-w-4xl mx-auto relative">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-blue-100 relative z-10">
             Find Your <span className="text-blue-300">Dream</span> Property
@@ -70,7 +71,6 @@ export const Home = () => {
           </Link>
         </div>
       </div>
-
       {/* swiper */}
       <Swiper navigation>
         {offerListings &&
@@ -82,18 +82,16 @@ export const Home = () => {
                   background: `url(${listing.imageUrls[0]}) center no-repeat`,
                   backgroundSize: "cover",
                 }}
-                className="h-[500px]"
+                className="min-w-[350px] h-[500px]"
                 key={listing._id}
               ></div>
             </SwiperSlide>
           ))}
       </Swiper>
-
       {/* listing results for offer, sale and rent */}
-
       <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
         {offerListings && offerListings.length > 0 && (
-          <div className="">
+          <div className="min-w-[340px]">
             <div className="my-3">
               <h2 className="text-2xl font-semibold text-blue-50">
                 Recent offers
@@ -159,6 +157,7 @@ export const Home = () => {
           </div>
         )}
       </div>
+      <PropertyValueSection />{" "}
     </div>
   );
 };

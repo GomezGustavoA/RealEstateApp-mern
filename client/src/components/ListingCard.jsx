@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const ListingCard = ({ listing }) => {
   return (
-    <div className="bg-blue-100 border border-blue-400 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 w-full sm:w-[350px]">
+    <div className="min-w-[300px] bg-blue-100 border border-blue-400 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 w-full sm:w-[350px]">
       <Link to={`/listing/${listing._id}`}>
         <div className="relative">
           <img
