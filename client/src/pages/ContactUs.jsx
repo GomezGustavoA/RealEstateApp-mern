@@ -8,7 +8,6 @@ const ContactUs = () => {
     to: "gagomez1090@gmail.com",
     subject: "Contact the real estate agency",
     message: "",
-    landlordMail: "gusgomsesa@gmail.com",
   });
   return (
     <div className=" min-w-[350px] mt-[90px] text-blue-100">

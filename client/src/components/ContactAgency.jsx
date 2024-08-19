@@ -55,7 +55,7 @@ const ContactAgency = () => {
   };
   return (
     <>
-      <div className="flex flex-col gap-4 p-4 bg-blue-100 shadow-lg rounded-lg border border-gray-200">
+      <div className="flex flex-col gap-4 p-4 bg-gray-800 shadow-lg rounded-lg border border-gray-700">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             name="name"
@@ -64,7 +64,7 @@ const ContactAgency = () => {
             placeholder="Your Name"
             value={mail.name}
             onChange={onChange}
-            className="w-full border bg-blue-50 border-gray-300 text-black p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border bg-gray-700 border-gray-600 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             name="mail"
@@ -73,15 +73,15 @@ const ContactAgency = () => {
             placeholder="Your Email"
             value={mail.to}
             onChange={onChange}
-            className="w-full border bg-blue-50 border-gray-300 tet-black p-3 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border bg-gray-700 border-gray-600 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <textarea
             name="message"
             id="message"
             value={mail.message}
             onChange={onChange}
-            placeholder={`Enter your message...`}
-            className="w-full border bg-blue-50 border-gray-300 text-black p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter your message..."
+            className="w-full border bg-gray-700 border-gray-600 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           ></textarea>
           <button
             type="submit"

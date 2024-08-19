@@ -26,16 +26,16 @@ const About = () => {
           Full Stack Developer
         </h3>
         <p className="text-lg text-gray-300 mt-4 text-center max-w-2xl">
-          Soy un desarrollador Full Stack entusiasta, especializado en crear
-          experiencias web dinámicas y funcionales. Mi pasión por el desarrollo
-          frontend, combinada con mi habilidad para manejar el backend, me
-          permite desarrollar soluciones completas que destacan tanto en
-          funcionalidad como en diseño.
+          I am an enthusiastic Full Stack Developer specializing in creating
+          dynamic and functional web experiences. My passion for frontend
+          development, combined with my ability to handle backend tasks, allows
+          me to deliver complete solutions that stand out both in functionality
+          and design.
         </p>
         <p className="text-lg text-gray-300 mt-4 text-center max-w-2xl">
-          Con experiencia en HTML, CSS, JavaScript y frameworks como React, así
-          como en tecnologías backend como Node.js y Express.js, estoy preparado
-          para enfrentar cualquier desafío en el desarrollo web.
+          With experience in HTML, CSS, JavaScript, and frameworks like React,
+          as well as backend technologies like Node.js and Express.js, I am
+          prepared to tackle any challenge in web development.
         </p>
       </div>
 

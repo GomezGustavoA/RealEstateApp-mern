@@ -64,19 +64,19 @@ const Header = () => {
   };
   return (
     <header className="min-w-[350px] bg-blue-900 shadow-md fixed top-0 left-0 w-full z-50">
-      <div className="flex justify-between items-center max-w-6xl mx-auto p-4">
-        <Link to="/">
-          <div className="flex items-center space-x-2">
+      <div className="grid grid-cols-12 items-center max-w-6xl mx-auto p-4">
+        <Link to="/" className="col-span-3">
+          <div className=" flex items-center space-x-2">
             <GiModernCity size={32} className="text-blue-100" />
             <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-              <span className="text-blue-300">Property</span>
+              <span className="text-blue-100">Property</span>
               <span className="text-blue-100">Horizon</span>
             </h1>
           </div>
         </Link>
         <form
           onSubmit={handleSubmit}
-          className="bg-blue-800 rounded-full flex items-center px-4 py-4 max-w-md mx-2"
+          className="col-span-3 w-36 md:w-full bg-blue-800 rounded-full flex items-center px-4 py-4 max-w-md mx-2"
         >
           <input
             type="text"
@@ -89,65 +89,73 @@ const Header = () => {
             <FaSearch className="text-blue-300 transition-transform duration-200 ease-in-out transform hover:scale-125" />
           </button>
         </form>
-        <ul className="flex gap-6 items-center relative">
-          <Link to="">
-            <li className="hidden sm:flex items-center text-blue-100 hover:underline">
-              <FaHome className="mr-2" />{" "}
-              <span className="hidden md:block">Home</span>
-            </li>
-          </Link>
-          <Link to="/about">
-            <li className="hidden sm:flex items-center text-blue-100 hover:underline">
-              <FaInfoCircle className="mr-2" />{" "}
-              <span className="hidden md:block">About</span>
-            </li>
-          </Link>
-
-          <Link to="/contact">
-            <li className="hidden sm:flex items-center text-blue-100 hover:underline">
-              <FaPhoneAlt className="mr-2" />{" "}
-              <span className="hidden md:block">Contact</span>
-            </li>
-          </Link>
-          {currentUser ? (
-            <div className="relative flex items-center justify-center">
-              <div className="absolute h-12 w-12 bg-blue-200 rounded-full border-2 border-blue-600"></div>
-              <div className="relative h-10 w-10 bg-blue-100 rounded-full">
-                <img
-                  src={currentUser.avatar}
-                  alt="profile"
-                  className="rounded-full h-10 w-10 object-cover cursor-pointer"
-                  onClick={toggleDropdown}
-                />
-              </div>
-
-              {isDropdownOpen && (
-                <div className="absolute right-0 top-11 mt-2 w-48 bg-blue-800 border border-blue-600 rounded-lg shadow-lg z-10">
-                  <Link to="/profile" onClick={toggleDropdown}>
-                    <div className="px-4 py-2 text-blue-100 hover:bg-blue-700 cursor-pointer flex items-center gap-2">
-                      <FaUser className="text-blue-300" />
-                      <span className="">Profile</span>
-                    </div>
-                  </Link>
-                  <div
-                    className="px-4 py-2 text-blue-100 hover:bg-blue-700 cursor-pointer flex items-center gap-2"
-                    onClick={handleSignOutUser}
-                  >
-                    <FaSignOutAlt className="text-blue-300" />
-                    Logout
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <Link to="/sign-in">
-              <li className="flex items-center text-blue-100 hover:underline group">
-                <FaSignInAlt size={18} className="mr-2" />
-                <span className="hidden md:block">Sign in</span>
-              </li>
+        <div className="col-span-6 flex justify-end items-center">
+          <ul className="flex items-center gap-6">
+            <Link
+              to="/"
+              className="flex items-center text-blue-100 hover:underline"
+            >
+              <FaHome className="mr-2 hidden sm:block" />
+              <span className="hidden font-light md:block">Home</span>
             </Link>
-          )}
-        </ul>
+            <Link
+              to="/about"
+              className="flex items-center text-blue-100 hover:underline"
+            >
+              <FaInfoCircle className="mr-2 hidden sm:block" />
+              <span className="hidden font-light md:block">About</span>
+            </Link>
+            <Link
+              to="/contact"
+              className="flex items-center text-blue-100 hover:underline"
+            >
+              <FaPhoneAlt className="mr-2 hidden sm:block" />
+              <span className="hidden font-light md:block">Contact</span>
+            </Link>
+
+            {currentUser ? (
+              <div className="relative flex-shrink-0 flex items-center justify-center">
+                <div className="absolute h-12 w-12 bg-blue-200 rounded-full border-2 border-blue-600"></div>
+                <div className="relative h-10 w-10 bg-blue-100 rounded-full">
+                  <img
+                    src={currentUser.avatar}
+                    alt="profile"
+                    className="rounded-full h-10 w-10 object-cover cursor-pointer"
+                    onClick={toggleDropdown}
+                  />
+                </div>
+
+                {isDropdownOpen && (
+                  <div className="absolute right-0 top-11 mt-2 w-48 bg-blue-800 border border-blue-600 rounded-lg shadow-lg z-10">
+                    <Link to="/profile" onClick={toggleDropdown}>
+                      <div className="px-4 py-2 text-blue-100 hover:bg-blue-700 cursor-pointer flex items-center gap-2">
+                        <FaUser className="text-blue-300" />
+                        <span>Profile</span>
+                      </div>
+                    </Link>
+                    <div
+                      className="px-4 py-2 text-blue-100 hover:bg-blue-700 cursor-pointer flex items-center gap-2"
+                      onClick={handleSignOutUser}
+                    >
+                      <FaSignOutAlt className="text-blue-300" />
+                      Logout
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                to="/sign-in"
+                className="flex items-center text-blue-100 hover:underline"
+              >
+                <FaSignInAlt size={18} className="mr-2" />
+                <span className="hidden whitespace-nowrap font-light md:block">
+                  Sign in
+                </span>
+              </Link>
+            )}
+          </ul>
+        </div>
       </div>
     </header>
   );

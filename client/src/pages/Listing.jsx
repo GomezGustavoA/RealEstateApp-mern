@@ -45,7 +45,7 @@ const Listing = () => {
     fetchListingById();
   }, [params.id]);
   return (
-    <main className="min-w-[350px] p-4">
+    <main className="mt-[110px] min-w-[350px] p-4">
       {loading && <p className="text-center my-7 text-2xl">Loading...</p>}
       {errorGetListing && (
         <div className=" bg-blue-800 text-blue-100 p-8 rounded-lg shadow-lg max-w-lg mx-auto mt-24">

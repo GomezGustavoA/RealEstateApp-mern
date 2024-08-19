@@ -20,10 +20,10 @@ const Footer = () => {
           </p>
         </div>
         <div className="flex space-x-4 text-blue-300">
-          <Link to="/privacy-policy" className="hover:underline">
+          <Link to="/About" className="hover:underline">
             Privacy Policy
           </Link>
-          <Link to="/terms-of-service" className="hover:underline">
+          <Link to="/About" className="hover:underline">
             Terms of Service
           </Link>
           <Link to="/contact" className="hover:underline">
@@ -31,18 +31,18 @@ const Footer = () => {
           </Link>
         </div>
         <div className="flex space-x-4 mt-4 sm:mt-0">
-          <a href="https://facebook.com" aria-label="Facebook">
+          <Link to="https://facebook.com" aria-label="Facebook">
             <FaFacebookF className="hover:text-blue-400 transition-colors" />
-          </a>
-          <a href="https://twitter.com" aria-label="Twitter">
+          </Link>
+          <Link to="https://twitter.com" aria-label="Twitter">
             <RiTwitterXFill className="hover:text-blue-400 transition-colors" />
-          </a>
-          <a href="https://instagram.com" aria-label="Instagram">
+          </Link>
+          <Link to="https://instagram.com" aria-label="Instagram">
             <FaInstagram className="hover:text-blue-400 transition-colors" />
-          </a>
-          <a href="https://linkedin.com" aria-label="LinkedIn">
+          </Link>
+          <Link to="https://linkedin.com" aria-label="LinkedIn">
             <FaLinkedinIn className="hover:text-blue-400 transition-colors" />
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

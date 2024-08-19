@@ -44,8 +44,8 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-w-[350px] p-6 max-w-lg mt-[120px] mx-auto bg-blue-100 rounded-lg shadow-lg">
-      <h1 className="text-3xl text-center font-semibold mb-6 text-blue-800">
+    <div className="min-w-[350px] p-6 max-w-lg mt-[120px] mx-auto bg-gray-800 rounded-lg shadow-lg">
+      <h1 className="text-3xl text-center font-semibold mb-6 text-white">
         Sign In
       </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -53,21 +53,21 @@ const SignIn = () => {
           <input
             type="email"
             placeholder="Email"
-            className="border border-gray-300 p-3 pl-10 rounded-lg w-full"
+            className="border border-gray-600 p-3 pl-10 rounded-lg w-full bg-gray-700 text-white placeholder-gray-400"
             id="email"
             onChange={handleChange}
           />
-          <FaEnvelope className="absolute top-3 left-3 text-gray-500" />
+          <FaEnvelope className="absolute top-3 left-3 text-gray-400" />
         </div>
         <div className="relative">
           <input
             type="password"
             placeholder="Password"
-            className="border border-gray-300 p-3 pl-10 rounded-lg w-full"
+            className="border border-gray-600 p-3 pl-10 rounded-lg w-full bg-gray-700 text-white placeholder-gray-400"
             id="password"
             onChange={handleChange}
           />
-          <FaLock className="absolute top-3 left-3 text-gray-500" />
+          <FaLock className="absolute top-3 left-3 text-gray-400" />
         </div>
         <button
           disabled={loading}
@@ -78,9 +78,9 @@ const SignIn = () => {
         <OAuth />
       </form>
       <div className="flex gap-2 mt-5 justify-center">
-        <p>Don't have an account?</p>
+        <p className="text-gray-400">Don't have an account?</p>
         <Link to="/sign-up">
-          <span className="text-blue-700 font-semibold hover:underline">
+          <span className="text-blue-400 font-semibold hover:underline">
             Sign Up
           </span>
         </Link>

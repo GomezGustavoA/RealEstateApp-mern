@@ -185,8 +185,8 @@ const Profile = () => {
   return (
     <div className="p-4 min-w-[350px] h-full md:h-screen-minus-90 sm:max-w-6xl flex flex-col mx-auto gap-6 md:flex-row mt-[90px]">
       {/* Sección del perfil */}
-      <div className="p-6 w-full md:w-1/2 bg-blue-100 rounded-lg shadow-lg max-h-[640px] md:max-h-[520px]">
-        <h1 className="text-3xl font-semibold text-center mb-6 text-blue-800">
+      <div className="p-6 w-full md:w-1/2 bg-gray-800 rounded-lg shadow-lg max-h-[640px] md:max-h-[520px]">
+        <h1 className="text-3xl font-semibold text-center mb-6 text-white">
           Profile
         </h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -199,9 +199,9 @@ const Profile = () => {
           />
 
           <div className="flex flex-col sm:flex-row items-center gap-5">
-            <div className=" relative flex items-center justify-center">
-              <div className=" absolute h-[115px] w-[115px] bg-blue-200 rounded-full border-2 border-blue-600"></div>
-              <div className=" relative h-[110px] w-[110px] bg-blue-50 rounded-full  flex items-center justify-center">
+            <div className="relative flex items-center justify-center">
+              <div className="absolute h-[115px] w-[115px] bg-gray-700 rounded-full border-2 border-gray-600"></div>
+              <div className="relative h-[110px] w-[110px] bg-gray-600 rounded-full flex items-center justify-center">
                 <img
                   src={formData.avatar || currentUser.avatar}
                   alt="profile"
@@ -216,7 +216,7 @@ const Profile = () => {
                 type="text"
                 placeholder="Username"
                 id="username"
-                className="border border-gray-300 p-3 rounded-lg w-full bg-blue-50"
+                className="border border-gray-600 p-3 rounded-lg w-full bg-gray-700 text-white"
                 defaultValue={currentUser.username}
                 onChange={handleChange}
               />
@@ -224,7 +224,7 @@ const Profile = () => {
                 type="email"
                 placeholder="Email"
                 id="email"
-                className="border border-gray-300 p-3 rounded-lg w-full bg-blue-50"
+                className="border border-gray-600 p-3 rounded-lg w-full bg-gray-700 text-white"
                 defaultValue={currentUser.email}
                 onChange={handleChange}
               />
@@ -232,11 +232,11 @@ const Profile = () => {
           </div>
           <p className="text-center text-sm">
             {imageUploadError ? (
-              <span className="text-red-700">Error image upload!</span>
+              <span className="text-red-500">Error image upload!</span>
             ) : imagePerc > 0 && imagePerc < 100 ? (
-              <span className="text-slate-700">{`Uploading ${imagePerc}%`}</span>
+              <span className="text-gray-400">{`Uploading ${imagePerc}%`}</span>
             ) : imagePerc === 100 && avatarExist ? (
-              <span className="text-green-700">Successfully uploaded!</span>
+              <span className="text-green-500">Successfully uploaded!</span>
             ) : (
               ""
             )}
@@ -245,7 +245,7 @@ const Profile = () => {
             type="password"
             placeholder="Password"
             id="password"
-            className="border border-gray-300 p-3 rounded-lg w-full bg-blue-50"
+            className="border border-gray-600 p-3 rounded-lg w-full bg-gray-700 text-white"
             onChange={handleChange}
           />
           <button
@@ -261,7 +261,7 @@ const Profile = () => {
             Create Listing
           </Link>
         </form>
-        <div className="flex justify-between mt-6 text-red-700">
+        <div className="flex justify-between mt-6 text-red-500">
           <span
             className="cursor-pointer hover:underline"
             onClick={handleDeleteUser}
@@ -275,19 +275,19 @@ const Profile = () => {
             Sign out
           </span>
         </div>
-        <p className="text-red-700 mt-5">{error || ""}</p>
-        <p className="text-green-700 mt-5">
+        <p className="text-red-500 mt-5">{error || ""}</p>
+        <p className="text-green-500 mt-5">
           {updateSuccess ? "User is updated successfully" : ""}
         </p>
       </div>
 
       {/* Sección de listados */}
-      <div className="p-6 w-full md:w-1/2 bg-blue-100 rounded-lg shadow-lg max-h-[640px] md:max-h-[520px]">
+      <div className="p-6 w-full md:w-1/2 bg-gray-800 rounded-lg shadow-lg max-h-[640px] md:max-h-[520px]">
         <div className="flex w-full justify-between items-center gap-4 mb-4">
-          <h2 className="text-3xl font-semibold text-center text-blue-800">
+          <h2 className="text-3xl font-semibold text-center text-white">
             Your Listings
           </h2>
-          <p className="text-red-700 text-sm">
+          <p className="text-red-500 text-sm">
             {showListingsError ? "Error showing listings" : ""}
           </p>
         </div>
@@ -295,7 +295,7 @@ const Profile = () => {
           <div className="scrollbar-thin overflow-auto h-[435px]">
             {userListings.map((listing) => (
               <div
-                className="border border-gray-300 flex flex-row pr-3 gap-3 items-center bg-blue-50 rounded-lg mb-2"
+                className="border border-gray-600 flex flex-row pr-3 gap-3 items-center bg-gray-700 rounded-lg mb-2"
                 key={listing._id}
               >
                 <Link
@@ -312,7 +312,7 @@ const Profile = () => {
                   to={`/listing/${listing._id}`}
                   className="flex-grow flex flex-col justify-center"
                 >
-                  <p className="text-slate-700 font-semibold hover:underline transition-transform transform hover:scale-105">
+                  <p className="text-gray-200 font-semibold hover:underline transition-transform transform hover:scale-105">
                     {listing.name}
                   </p>
                 </Link>
@@ -321,12 +321,12 @@ const Profile = () => {
                     onClick={async () => {
                       await handleListingDelete(listing);
                     }}
-                    className="w-7 h-7 bg-red-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transform transition-transform hover:scale-125"
+                    className="w-7 h-7 bg-red-500 rounded-full flex justify-center items-center border-2 border-gray-700 shadow-lg transform transition-transform hover:scale-125"
                   >
                     <FaTrash style={{ width: "12px", color: "white" }} />
                   </button>
                   <Link to={`/update-listing/${listing._id}`}>
-                    <button className="w-7 h-7 bg-green-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transform transition-transform hover:scale-125">
+                    <button className="w-7 h-7 bg-green-500 rounded-full flex justify-center items-center border-2 border-gray-700 shadow-lg transform transition-transform hover:scale-125">
                       <FaEdit style={{ width: "12px", color: "white" }} />
                     </button>
                   </Link>
@@ -335,15 +335,15 @@ const Profile = () => {
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center bg-blue-50 border border-blue-300 p-8 rounded-lg shadow-lg">
-            <FaRegSadTear className="text-blue-500 text-6xl mb-4" />
-            <h2 className="text-blue-700 text-2xl font-semibold mb-2">
+          <div className="flex flex-col items-center bg-gray-700 border border-gray-600 p-8 rounded-lg shadow-lg">
+            <FaRegSadTear className="text-gray-400 text-6xl mb-4" />
+            <h2 className="text-gray-300 text-2xl font-semibold mb-2">
               No Listings to Display
             </h2>
-            <p className="text-blue-600 text-center">
+            <p className="text-gray-400 text-center">
               It appears that there are no listings available at the moment.
               Please create your listing using the
-              <span className="font-semibold text-blue-800">
+              <span className="font-semibold text-white">
                 {" "}
                 'Create Listing'{" "}
               </span>
@@ -351,7 +351,7 @@ const Profile = () => {
             </p>
           </div>
         )}
-        <p className="text-red-700 mt-5 text-sm">
+        <p className="text-red-500 mt-5 text-sm">
           {errorListingDelete && errorListingDelete}
         </p>
       </div>
