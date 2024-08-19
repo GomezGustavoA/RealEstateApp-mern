@@ -7,6 +7,7 @@ import {
   signInFailure,
 } from "../redux/user/userSlice.js";
 import OAuth from "../components/OAuth.jsx";
+import { FaEnvelope, FaLock } from "react-icons/fa";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
@@ -20,6 +21,7 @@ const SignIn = () => {
       [e.target.id]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(signInStart());
@@ -42,38 +44,48 @@ const SignIn = () => {
   };
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
-          type="email"
-          placeholder="Email"
-          className="border p-3 rounded-lg"
-          id="email"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="border p-3 rounded-lg"
-          id="password"
-          onChange={handleChange}
-        />
+    <div className="min-w-[350px] p-6 max-w-lg mt-[120px] mx-auto bg-blue-100 rounded-lg shadow-lg">
+      <h1 className="text-3xl text-center font-semibold mb-6 text-blue-800">
+        Sign In
+      </h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <div className="relative">
+          <input
+            type="email"
+            placeholder="Email"
+            className="border border-gray-300 p-3 pl-10 rounded-lg w-full"
+            id="email"
+            onChange={handleChange}
+          />
+          <FaEnvelope className="absolute top-3 left-3 text-gray-500" />
+        </div>
+        <div className="relative">
+          <input
+            type="password"
+            placeholder="Password"
+            className="border border-gray-300 p-3 pl-10 rounded-lg w-full"
+            id="password"
+            onChange={handleChange}
+          />
+          <FaLock className="absolute top-3 left-3 text-gray-500" />
+        </div>
         <button
           disabled={loading}
-          className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+          className="bg-blue-700 text-white p-3 rounded-lg uppercase hover:bg-blue-800 disabled:bg-blue-500 transition-colors"
         >
-          {loading ? "loading..." : "Sign in"}
+          {loading ? "Loading..." : "Sign In"}
         </button>
         <OAuth />
       </form>
-      <div className="flex gap-2 mt-5">
-        <p>Dont have an account?</p>
-        <Link to={"/sign-up"}>
-          <span className="text-blue-700">Sign up</span>
+      <div className="flex gap-2 mt-5 justify-center">
+        <p>Don't have an account?</p>
+        <Link to="/sign-up">
+          <span className="text-blue-700 font-semibold hover:underline">
+            Sign Up
+          </span>
         </Link>
       </div>
-      {error && <p className="text-red-500 mt-5">{error}</p>}
+      {error && <p className="text-red-500 mt-5 text-center">{error}</p>}
     </div>
   );
 };

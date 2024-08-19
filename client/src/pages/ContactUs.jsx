@@ -12,7 +12,7 @@ const ContactUs = () => {
   });
   return (
     <div className=" min-w-[350px] mt-[90px] text-blue-100">
-      <div className="max-w-6xl mx-auto p-6 pt-11">
+      <div className="max-w-6xl mx-auto p-6 ">
         <h1 className="text-4xl font-bold text-center mb-10 text-blue-300">
           ContactUs Us
         </h1>

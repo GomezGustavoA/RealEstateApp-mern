@@ -16,22 +16,26 @@ import ContactUs from "./pages/ContactUs";
 const App = () => {
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/listing/:id" element={<Listing />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/create-listing" element={<CreateListing />} />
-          <Route path="/update-listing/:id" element={<UpdateListing />} />
-        </Route>
-      </Routes>
-      <Footer />
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/listing/:id" element={<Listing />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/create-listing" element={<CreateListing />} />
+              <Route path="/update-listing/:id" element={<UpdateListing />} />
+            </Route>
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 };

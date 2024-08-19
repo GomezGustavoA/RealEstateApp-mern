@@ -34,10 +34,9 @@ const Profile = () => {
   const [updateSuccess, serUpadateSuccess] = useState(false);
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
-  const [refreshListings, setRefreshListing] = useState(false);
   const [errorListingDelete, setErrorListingDelete] = useState(false);
   const dispatch = useDispatch();
-
+  console.log(currentUser);
   useEffect(() => {
     if (file) {
       handleFileUpload(file);
@@ -184,10 +183,13 @@ const Profile = () => {
     handleShowListings();
   }, []);
   return (
-    <div className="p-3 min-w-[350px] h-full md:h-screen-minus-90 sm: max-w-6xl flex flex-col mx-auto gap-5 md:flex-row mt-[90px]">
-      <div className="p-4 mx-auto w-full max-h-[640px] md:w-1/2 bg-blue-100 rounded-lg shadow-lg md:max-h-[520px]">
-        <h1 className="text-3xl font-semibold text-center mb-6">Profile</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <div className="p-4 min-w-[350px] h-full md:h-screen-minus-90 sm:max-w-6xl flex flex-col mx-auto gap-6 md:flex-row mt-[90px]">
+      {/* Sección del perfil */}
+      <div className="p-6 w-full md:w-1/2 bg-blue-100 rounded-lg shadow-lg max-h-[640px] md:max-h-[520px]">
+        <h1 className="text-3xl font-semibold text-center mb-6 text-blue-800">
+          Profile
+        </h1>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <input
             type="file"
             ref={fileRef}
@@ -195,13 +197,20 @@ const Profile = () => {
             hidden
             accept="image/*"
           />
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <img
-              src={formData.avatar || currentUser.avatar}
-              alt="profile"
-              onClick={() => fileRef.current.click()}
-              className="rounded-full h-28 w-28 object-cover cursor-pointer border-2 border-gray-300 bg-blue-50"
-            />
+
+          <div className="flex flex-col sm:flex-row items-center gap-5">
+            <div className=" relative flex items-center justify-center">
+              <div className=" absolute h-[115px] w-[115px] bg-blue-200 rounded-full border-2 border-blue-600"></div>
+              <div className=" relative h-[110px] w-[110px] bg-blue-50 rounded-full  flex items-center justify-center">
+                <img
+                  src={formData.avatar || currentUser.avatar}
+                  alt="profile"
+                  onClick={() => fileRef.current.click()}
+                  className="rounded-full h-[105px] w-[105px] object-cover cursor-pointer"
+                />
+              </div>
+            </div>
+
             <div className="w-full flex flex-col gap-4">
               <input
                 type="text"
@@ -241,13 +250,13 @@ const Profile = () => {
           />
           <button
             disabled={loading}
-            className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:bg-slate-800 disabled:opacity-80 mt-6 transition"
+            className="bg-blue-700 text-white p-3 rounded-lg uppercase hover:bg-blue-800 disabled:bg-blue-500 transition-colors"
           >
             {loading ? "loading..." : "Update"}
           </button>
           <Link
             to={"/create-listing"}
-            className="bg-green-700 text-white text-center rounded-lg p-3 uppercase hover:bg-green-800 disabled:opacity-80 mt-4 transition"
+            className="bg-green-600 text-white text-center rounded-lg p-3 uppercase hover:bg-green-700 disabled:opacity-80 transition"
           >
             Create Listing
           </Link>
@@ -272,49 +281,52 @@ const Profile = () => {
         </p>
       </div>
 
-      <div className="p-4 mx-auto w-full md:w-1/2 bg-blue-100 rounded-lg shadow-lg max-h-[520px]">
-        <div className="flex w-full justify-center gap-4 mb-4">
-          <h2 className="text-3xl font-semibold text-center">Your Listings</h2>
-          <p className="text-red-700 mt-5 text-sm">
-            {showListingsError ? "Error showling listings" : ""}
+      {/* Sección de listados */}
+      <div className="p-6 w-full md:w-1/2 bg-blue-100 rounded-lg shadow-lg max-h-[640px] md:max-h-[520px]">
+        <div className="flex w-full justify-between items-center gap-4 mb-4">
+          <h2 className="text-3xl font-semibold text-center text-blue-800">
+            Your Listings
+          </h2>
+          <p className="text-red-700 text-sm">
+            {showListingsError ? "Error showing listings" : ""}
           </p>
         </div>
         {userListings && userListings.length > 0 ? (
           <div className="scrollbar-thin overflow-auto h-[435px]">
             {userListings.map((listing) => (
               <div
-                className="border border-gray-300 flex flex-row pr-3 gap-2 justify-between items-center bg-blue-50 rounded-lg mb-1"
+                className="border border-gray-300 flex flex-row pr-3 gap-3 items-center bg-blue-50 rounded-lg mb-2"
                 key={listing._id}
               >
                 <Link
                   to={`/listing/${listing._id}`}
-                  className="h-28 w-1/3 flex-shrink-0 overflow-hidden rounded-md"
+                  className="h-28 w-28 flex-shrink-0 overflow-hidden rounded-md"
                 >
                   <img
-                    className="w-full h-full object-cover cursor-pointer "
+                    className="w-full h-full object-cover cursor-pointer"
                     src={listing.imageUrls[0]}
                     alt="image of the publication"
                   />
                 </Link>
-
-                <Link to={`/listing/${listing._id}`} className="flex flex-row">
-                  <p className="text-slate-700 font-semibold flex flex-wrap transition-transform duration-200 ease-in-out transform hover:scale-105 hover:underline mr-3 ml-3">
+                <Link
+                  to={`/listing/${listing._id}`}
+                  className="flex-grow flex flex-col justify-center"
+                >
+                  <p className="text-slate-700 font-semibold hover:underline transition-transform transform hover:scale-105">
                     {listing.name}
                   </p>
                 </Link>
-
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col items-center gap-3">
                   <button
                     onClick={async () => {
                       await handleListingDelete(listing);
-                      // handleShowListings();
                     }}
-                    className="right-2 top-2 w-7 aspect-square bg-red-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transition-transform duration-200 ease-in-out transform hover:scale-125"
+                    className="w-7 h-7 bg-red-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transform transition-transform hover:scale-125"
                   >
                     <FaTrash style={{ width: "12px", color: "white" }} />
                   </button>
                   <Link to={`/update-listing/${listing._id}`}>
-                    <button className="right-2 top-2 w-7 aspect-square bg-green-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transition-transform duration-200 ease-in-out transform hover:scale-125">
+                    <button className="w-7 h-7 bg-green-500 rounded-full flex justify-center items-center border-2 border-white shadow-lg transform transition-transform hover:scale-125">
                       <FaEdit style={{ width: "12px", color: "white" }} />
                     </button>
                   </Link>
@@ -323,17 +335,18 @@ const Profile = () => {
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center bg-gray-100 border border-gray-300 p-8 rounded-lg shadow-md">
-            <FaRegSadTear className="text-gray-400 text-6xl mb-4" />
-            <h2 className="text-gray-600 text-xl font-semibold mb-2">
-              No listings to display.
+          <div className="flex flex-col items-center bg-blue-50 border border-blue-300 p-8 rounded-lg shadow-lg">
+            <FaRegSadTear className="text-blue-500 text-6xl mb-4" />
+            <h2 className="text-blue-700 text-2xl font-semibold mb-2">
+              No Listings to Display
             </h2>
-            <p className="text-gray-500">
+            <p className="text-blue-600 text-center">
               It appears that there are no listings available at the moment.
-              Please create your listing using the{" "}
-              <span className="font-semibold text-gray-900">
-                'Create Listing'
-              </span>{" "}
+              Please create your listing using the
+              <span className="font-semibold text-blue-800">
+                {" "}
+                'Create Listing'{" "}
+              </span>
               button.
             </p>
           </div>

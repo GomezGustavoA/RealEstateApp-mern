@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
@@ -10,7 +10,9 @@ import {
   FaChair,
   FaMapMarkerAlt,
   FaParking,
+  FaUserPlus,
 } from "react-icons/fa";
+FaUserPlus;
 import { useSelector } from "react-redux";
 import Contact from "../components/Contact";
 
@@ -43,12 +45,26 @@ const Listing = () => {
     fetchListingById();
   }, [params.id]);
   return (
-    <main className="min-w-[350px]  mt-[95px] p-4">
+    <main className="min-w-[350px] p-4">
       {loading && <p className="text-center my-7 text-2xl">Loading...</p>}
       {errorGetListing && (
-        <p className="text-center my-7 text-2xl text-red-600">
-          {errorGetListing}
-        </p>
+        <div className=" bg-blue-800 text-blue-100 p-8 rounded-lg shadow-lg max-w-lg mx-auto mt-24">
+          <h2 className="text-3xl font-bold mb-4">
+            To Access Full Property Details
+          </h2>
+          <p className="text-xl mb-6">
+            Please <span className="font-semibold">register</span> to view the
+            complete information about this property. Registration is quick and
+            easy!
+          </p>
+          <Link
+            to="/sign-up"
+            className="flex items-center justify-center px-8 py-4 text-xl font-semibold bg-blue-300 text-blue-800 rounded-lg shadow-md hover:bg-blue-400 hover:text-white transition-colors"
+          >
+            <FaUserPlus size={24} className="mr-3" />
+            Register Now
+          </Link>
+        </div>
       )}
       {listing && !loading && !errorGetListing && (
         <div className="max-w-7xl mx-auto bg-blue-100 shadow-lg overflow-hidden rounded ">

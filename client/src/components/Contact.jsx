@@ -62,7 +62,7 @@ const Contact = ({ listing }) => {
   return (
     <>
       {landlord && (
-        <div className="flex flex-col gap-4 p-4 bg-white shadow-lg rounded-lg border border-gray-200">
+        <div className="flex flex-col gap-4 p-4 bg-blue-50 shadow-lg rounded-lg border border-gray-200">
           <p className="text-lg text-gray-800">
             Contact{" "}
             <span className="font-semibold text-gray-900">
@@ -73,14 +73,17 @@ const Contact = ({ listing }) => {
               {listing.name.toLowerCase()}
             </span>
           </p>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form
+            onSubmit={handleSubmit}
+            className=" bg-blue-50 flex flex-col gap-4"
+          >
             <textarea
               name="message"
               id="message"
               value={mail.message}
               onChange={onChange}
               placeholder={`Enter your message for ${landlord.username}...`}
-              className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-blue-50 border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
             <button
               type="submit"
