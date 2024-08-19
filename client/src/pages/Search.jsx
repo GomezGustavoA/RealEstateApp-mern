@@ -138,8 +138,8 @@ const Search = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row bg-gray-50 pt-[104px]">
-      <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen bg-white shadow-lg">
+    <div className="flex flex-col min-w-[350px] mt-[90px] md:h-screen-minus-90 md:flex-row">
+      <div className="p-7 border-b-2 md:border-r-2  bg-blue-100 shadow-lg">
         <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-2">
             <label
@@ -154,7 +154,7 @@ const Search = () => {
               placeholder="Enter keywords..."
               value={sidebarData.searchTerm}
               onChange={handleChange}
-              className="border rounded-lg p-3 w-full focus:ring-2 focus:ring-slate-400 outline-none transition"
+              className="border rounded-lg p-3 w-full bg-blue-50 focus:ring-2 focus:ring-blue-400 outline-none transition"
             />
           </div>
           <div className="flex flex-col gap-4">
@@ -238,7 +238,7 @@ const Search = () => {
             </label>
             <select
               id="sort_order"
-              className="border rounded-lg p-3 focus:ring-2 focus:ring-slate-400 outline-none transition"
+              className="border rounded-lg p-3 bg-blue-50 focus:ring-2 focus:ring-blue-400 outline-none transition"
               onChange={handleChange}
               defaultValue={"created_at_desc"}
             >
@@ -248,22 +248,22 @@ const Search = () => {
               <option value="createAt_asc">Oldest</option>
             </select>
           </div>
-          <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-90 transition">
+          <button className="bg-blue-700 text-white p-3 rounded-lg uppercase hover:opacity-90 transition">
             Search
           </button>
         </form>
       </div>
 
-      <div className="p-7 flex-1">
-        <h1 className="text-2xl font-bold text-gray-700 mb-6">
+      <div className="p-6 flex flex-col w-full">
+        <h1 className="flex items-center text-2xl font-bold text-blue-100  ">
           Listing Results:
         </h1>
-        <div className="p-7 flex flex-wrap gap-4">
+        <div className="pt-4 flex flex-wrap justify-center gap-4  h-full scrollbar-thin overflow-auto ">
           {!loading && listing.length === 0 && (
-            <p className="text-xl text-slate-700">No listing found!</p>
+            <p className="text-xl text-blue-50">No listing found!</p>
           )}
           {loading && (
-            <p className="text-xl text-slate-700 text-center w-full">
+            <p className="text-xl text-blue-50 text-center w-full">
               Loading...
             </p>
           )}
@@ -277,9 +277,9 @@ const Search = () => {
           {showMore && (
             <button
               onClick={onShowMoreClick}
-              className="text-green-700 hover:underline p-7 text-center w-full"
+              className="text-blue-100 hover:underline p-7 text-center w-full"
             >
-              Show more
+              Show more...
             </button>
           )}
         </div>

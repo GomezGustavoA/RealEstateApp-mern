@@ -1,9 +1,10 @@
 import { MdLocationOn } from "react-icons/md";
+import { FaBath, FaBed, FaParking } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ListingCard = ({ listing }) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 w-full sm:w-[350px]">
+    <div className="bg-blue-100 border border-blue-400 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 w-full sm:w-[350px]">
       <Link to={`/listing/${listing._id}`}>
         <div className="relative">
           <img
@@ -15,7 +16,7 @@ const ListingCard = ({ listing }) => {
             className="w-full h-[200px] sm:h-[250px] object-cover transition-transform duration-500 transform hover:scale-110"
           />
           {listing.offer && (
-            <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-md">
+            <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-3 py-2 rounded-md">
               Sale
             </div>
           )}
@@ -43,14 +44,24 @@ const ListingCard = ({ listing }) => {
             )}
           </div>
           <div className="text-gray-600 flex gap-4 mt-2 text-sm">
-            <div className="flex items-center">
-              <span className="font-medium mr-1">{listing.bedrooms}</span>
-              <span>{listing.bedrooms > 1 ? "beds" : "bed"}</span>
-            </div>
-            <div className="flex items-center">
-              <span className="font-medium mr-1">{listing.bathrooms}</span>
-              <span>{listing.bathrooms > 1 ? "baths" : "bath"}</span>
-            </div>
+            <ul className="text-blue-900 font-normal text-sm flex items-center gap-4 flex-wrap">
+              <li className="flex items-center gap-1">
+                <FaBed className="text-lg" />
+                {listing.bedrooms > 1
+                  ? `${listing.bedrooms} beds`
+                  : `${listing.bedrooms} bed`}
+              </li>
+              <li className="flex items-center gap-1">
+                <FaBath className="text-lg" />
+                {listing.bathrooms > 1
+                  ? `${listing.bathrooms} baths`
+                  : `${listing.bathrooms} bath`}
+              </li>
+              <li className="flex items-center gap-1">
+                <FaParking className="text-lg" />
+                {listing.parking ? `Parking Spot` : `No Parking`}
+              </li>
+            </ul>
           </div>
         </div>
       </Link>

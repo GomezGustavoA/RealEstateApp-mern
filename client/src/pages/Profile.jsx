@@ -184,8 +184,8 @@ const Profile = () => {
     handleShowListings();
   }, []);
   return (
-    <div className="p-3 min-w-[350px] sm: max-w-6xl flex flex-col mx-auto gap-5 md:flex-row mt-[104px]">
-      <div className="p-4 mx-auto w-full md:w-1/2 bg-white rounded-lg shadow-lg max-h-[520px]">
+    <div className="p-3 min-w-[350px] h-full md:h-screen-minus-90 sm: max-w-6xl flex flex-col mx-auto gap-5 md:flex-row mt-[90px]">
+      <div className="p-4 mx-auto w-full max-h-[640px] md:w-1/2 bg-blue-100 rounded-lg shadow-lg md:max-h-[520px]">
         <h1 className="text-3xl font-semibold text-center mb-6">Profile</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
@@ -200,14 +200,14 @@ const Profile = () => {
               src={formData.avatar || currentUser.avatar}
               alt="profile"
               onClick={() => fileRef.current.click()}
-              className="rounded-full h-28 w-28 object-cover cursor-pointer border-2 border-gray-300"
+              className="rounded-full h-28 w-28 object-cover cursor-pointer border-2 border-gray-300 bg-blue-50"
             />
             <div className="w-full flex flex-col gap-4">
               <input
                 type="text"
                 placeholder="Username"
                 id="username"
-                className="border border-gray-300 p-3 rounded-lg w-full"
+                className="border border-gray-300 p-3 rounded-lg w-full bg-blue-50"
                 defaultValue={currentUser.username}
                 onChange={handleChange}
               />
@@ -215,7 +215,7 @@ const Profile = () => {
                 type="email"
                 placeholder="Email"
                 id="email"
-                className="border border-gray-300 p-3 rounded-lg w-full"
+                className="border border-gray-300 p-3 rounded-lg w-full bg-blue-50"
                 defaultValue={currentUser.email}
                 onChange={handleChange}
               />
@@ -236,7 +236,7 @@ const Profile = () => {
             type="password"
             placeholder="Password"
             id="password"
-            className="border border-gray-300 p-3 rounded-lg w-full"
+            className="border border-gray-300 p-3 rounded-lg w-full bg-blue-50"
             onChange={handleChange}
           />
           <button
@@ -272,7 +272,7 @@ const Profile = () => {
         </p>
       </div>
 
-      <div className="p-4 mx-auto w-full md:w-1/2 bg-white rounded-lg shadow-lg max-h-[520px]">
+      <div className="p-4 mx-auto w-full md:w-1/2 bg-blue-100 rounded-lg shadow-lg max-h-[520px]">
         <div className="flex w-full justify-center gap-4 mb-4">
           <h2 className="text-3xl font-semibold text-center">Your Listings</h2>
           <p className="text-red-700 mt-5 text-sm">
@@ -280,10 +280,10 @@ const Profile = () => {
           </p>
         </div>
         {userListings && userListings.length > 0 ? (
-          <div className="overflow-hidden overflow-y-scroll h-[435px] ">
+          <div className="scrollbar-thin overflow-auto h-[435px]">
             {userListings.map((listing) => (
               <div
-                className="border p-1 flex flex-row gap-1 justify-between items-center bg-white rounded-lg mb-1"
+                className="border border-gray-300 flex flex-row pr-3 gap-2 justify-between items-center bg-blue-50 rounded-lg mb-1"
                 key={listing._id}
               >
                 <Link

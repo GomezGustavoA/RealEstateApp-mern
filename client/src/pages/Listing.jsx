@@ -43,7 +43,7 @@ const Listing = () => {
     fetchListingById();
   }, [params.id]);
   return (
-    <main className="min-w-[350px] bg-gray-100 mt-2 mb-2">
+    <main className="min-w-[350px]  mt-[95px] p-4">
       {loading && <p className="text-center my-7 text-2xl">Loading...</p>}
       {errorGetListing && (
         <p className="text-center my-7 text-2xl text-red-600">
@@ -51,7 +51,7 @@ const Listing = () => {
         </p>
       )}
       {listing && !loading && !errorGetListing && (
-        <div className="max-w-7xl mx-auto bg-white shadow-lg overflow-hidden rounded ">
+        <div className="max-w-7xl mx-auto bg-blue-100 shadow-lg overflow-hidden rounded ">
           <div className="relative">
             <Swiper navigation>
               {listing.imageUrls.map((url, index) => (

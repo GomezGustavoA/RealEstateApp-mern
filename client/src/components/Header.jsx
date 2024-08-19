@@ -5,7 +5,9 @@ import {
   FaHome,
   FaInfoCircle,
   FaSignInAlt,
+  FaPhoneAlt,
 } from "react-icons/fa";
+import { GiModernCity } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -61,61 +63,73 @@ const Header = () => {
     }
   };
   return (
-    <header className="min-w-[350px] bg-slate-200 shadow-md fixed top-0 left-0 w-full z-50">
-      <div className="flex justify-between items-center max-w-6xl mx-auto p-6">
+    <header className="min-w-[350px] bg-blue-900 shadow-md fixed top-0 left-0 w-full z-50">
+      <div className="flex justify-between items-center max-w-6xl mx-auto p-4">
         <Link to="/">
-          <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-            <span className="text-slate-500">RealEstate</span>
-            <span className="text-slate-700">Realm</span>
-          </h1>
+          <div className="flex items-center space-x-2">
+            <GiModernCity size={32} className="text-blue-100" />
+            <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
+              <span className="text-blue-300">Property</span>
+              <span className="text-blue-100">Horizon</span>
+            </h1>
+          </div>
         </Link>
         <form
           onSubmit={handleSubmit}
-          className="bg-slate-100 rounded-full flex items-center px-4 py-4 max-w-md mx-2"
+          className="bg-blue-800 rounded-full flex items-center px-4 py-4 max-w-md mx-2"
         >
           <input
             type="text"
             placeholder="Search..."
-            className="bg-transparent focus:outline-none w-full"
+            className="bg-transparent focus:outline-none w-full text-blue-100 placeholder-blue-300"
             onChange={onChange}
             value={searchTerm}
           />
           <button>
-            <FaSearch className="text-slate-500 transition-transform duration-200 ease-in-out transform hover:scale-125" />
+            <FaSearch className="text-blue-300 transition-transform duration-200 ease-in-out transform hover:scale-125" />
           </button>
         </form>
-        <ul className="flex gap-4 items-center relative">
+        <ul className="flex gap-6 items-center relative">
           <Link to="">
-            <li className="hidden sm:flex items-center text-slate-700 hover:underline">
-              <FaHome className="mr-2" /> Home
+            <li className="hidden sm:flex items-center text-blue-100 hover:underline">
+              <FaHome className="mr-2" />{" "}
+              <span className="hidden md:block">Home</span>
             </li>
           </Link>
           <Link to="/about">
-            <li className="hidden sm:flex items-center text-slate-700 hover:underline">
-              <FaInfoCircle className="mr-2" /> About
+            <li className="hidden sm:flex items-center text-blue-100 hover:underline">
+              <FaInfoCircle className="mr-2" />{" "}
+              <span className="hidden md:block">About</span>
+            </li>
+          </Link>
+
+          <Link to="/contact">
+            <li className="hidden sm:flex items-center text-blue-100 hover:underline">
+              <FaPhoneAlt className="mr-2" />{" "}
+              <span className="hidden md:block">Contact</span>
             </li>
           </Link>
           {currentUser ? (
-            <div className="relative  h-8 w-8">
+            <div className="relative h-10 w-10 bg-blue-100 rounded-full">
               <img
                 src={currentUser.avatar}
                 alt="profile"
-                className="rounded-full h-8 w-8 object-cover cursor-pointer"
+                className="rounded-full h-10 object-cover cursor-pointer"
                 onClick={toggleDropdown}
               />
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-300 rounded-lg shadow-lg z-10">
+                <div className="absolute right-0 mt-2 w-48 bg-blue-800 border border-blue-600 rounded-lg shadow-lg z-10">
                   <Link to="/profile" onClick={toggleDropdown}>
-                    <div className="px-4 py-2 text-slate-700 hover:bg-slate-100 cursor-pointer flex items-center gap-2">
-                      <FaUser className="text-slate-500" />
+                    <div className="px-4 py-2 text-blue-100 hover:bg-blue-700 cursor-pointer flex items-center gap-2">
+                      <FaUser className="text-blue-300" />
                       <span className="">Profile</span>
                     </div>
                   </Link>
                   <div
-                    className="px-4 py-2 text-slate-700 hover:bg-slate-100 cursor-pointer flex items-center gap-2"
+                    className="px-4 py-2 text-blue-100 hover:bg-blue-700 cursor-pointer flex items-center gap-2"
                     onClick={handleSignOutUser}
                   >
-                    <FaSignOutAlt className="text-slate-500" />
+                    <FaSignOutAlt className="text-blue-300" />
                     Logout
                   </div>
                 </div>
@@ -123,11 +137,9 @@ const Header = () => {
             </div>
           ) : (
             <Link to="/sign-in">
-              <li className="flex items-center text-slate-700 hover:underline group">
-                <FaSignInAlt className="mr-3 transform transition-transform duration-200 group-hover:translate-x-1" />
-                <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transform transition-all duration-300">
-                  Sign in
-                </span>
+              <li className="flex items-center text-blue-100 hover:underline group">
+                <FaSignInAlt size={18} className="mr-2" />
+                <span className="hidden md:block">Sign in</span>
               </li>
             </Link>
           )}
