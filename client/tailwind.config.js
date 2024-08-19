@@ -9,8 +9,10 @@ export default {
       scrollbar: {
         thin: {
           "scrollbar-width": "thin",
-          "scrollbar-color": "#4a4a4a #e0e0e0",
         },
+      },
+      theme: {
+        extend: {},
       },
     },
   },

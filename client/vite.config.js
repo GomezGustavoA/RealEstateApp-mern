@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import tailwindcss from "tailwindcss";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,8 +11,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [
-    react(),
-    // No es necesario incluir tailwindcss() en plugins, ya que se configura en tailwind.config.js
-  ],
+  plugins: [react()],
 });
